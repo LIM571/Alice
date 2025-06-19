@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aniversário de 15 Anos - Alice</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonte cursiva bonita -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --azul-escuro: #000022;
+      --bege-claro: #ebdeae;
+      --dourado: #d4af37;
+    }
+
+    /* Cortinas douradas */
+    .curtain-left, .curtain-right {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--dourado), #fff4c2);
+      z-index: 50;
+      transition: transform 2s ease-in-out;
+    }
+
+    .curtain-left {
+      left: 0;
+      border-right: 2px solid #caa730;
+    }
+
+    .curtain-right {
+      right: 0;
+      border-left: 2px solid #caa730;
+    }
+
+    .curtain.open .curtain-left {
+      transform: translateX(-100%);
+    }
+
+    .curtain.open .curtain-right {
+      transform: translateX(100%);
+    }
+
+    /* Nome Alice */
+    .curtain-text {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      font-family: 'Great Vibes', cursive;
+      color: var(--azul-escuro);
+      z-index: 60;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      animation: fadeIn 2s forwards ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .curtain.hide-text .curtain-text {
+      animation: fadeOut 1s forwards ease-in-out;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Brilho de estrelas */
+    .shimmer-stars {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shimmer-stars::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .shimmer-stars:hover::after {
+      opacity: 1;
+      animation: stars 2s linear infinite;
+    }
+
+    @keyframes stars {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(20px, 20px); }
+    }
+  </style>
+</head>
+<body class="bg-[var(--azul-escuro)] text-[var(--bege-claro)] font-serif overflow-x-hidden">
+
+  <!-- Cortinas + Nome -->
+  <div id="curtain" class="curtain">
+    <div class="curtain-left"></div>
+    <div class="curtain-right"></div>
+    <div id="curtain-text" class="curtain-text">Alice</div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 relative z-10">
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">Aniversário de 15 Anos de Alice</h1>
+
+    <!-- Lista de presentes -->
+    <section class="w-full max-w-5xl mt-12">
+      <h2 class="text-2xl md:text-3xl mb-4 border-b-2 pb-2 border-[var(--bege-claro)]">Lista de Presentes</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+
+        <!-- CARD 1 -->
+        <div class="bg-[var(--bege-claro)] text-[var(--azul-escuro)] rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition shimmer-stars">
+          <img src="https://images.unsplash.com/photo-1600180758890-6b94519b1c8f?auto=format&fit=crop&w=400&q=80" alt="Colar de Pérolas" class="w-full h-48 object-cover" />
+          <div class="p-4 flex flex-col items-center">
+            <h3 class="text-xl font-bold mb-2">Colar de Pérolas</h3>
+            <p class="text-sm mb-4 text-center">Elegante colar para uma noite inesquecível.</p>
+            <button class="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 transition shadow-md">Selecionar</button>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="bg-[var(--bege-claro)] text-[var(--azul-escuro)] rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition shimmer-stars">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" alt="Perfume" class="w-full h-48 object-cover" />
+          <div class="p-4 flex flex-col items-center">
+            <h3 class="text-xl font-bold mb-2">Perfume Importado</h3>
+            <p class="text-sm mb-4 text-center">Aroma marcante para ocasiões especiais.</p>
+            <button class="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 transition shadow-md">Selecionar</button>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-[var(--bege-claro)] text-[var(--azul-escuro)] rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition shimmer-stars">
+          <img src="https://images.unsplash.com/photo-1618354691249-4762e591be7e?auto=format&fit=crop&w=400&q=80" alt="Bolsa elegante" class="w-full h-48 object-cover" />
+          <div class="p-4 flex flex-col items-center">
+            <h3 class="text-xl font-bold mb-2">Bolsa Elegante</h3>
+            <p class="text-sm mb-4 text-center">Acessório charmoso para o dia a dia.</p>
+            <button class="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 transition shadow-md">Selecionar</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript para animações -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // Espera 2 segundos, abre as cortinas
+      setTimeout(() => {
+        document.getElementById('curtain').classList.add('open');
+      }, 2000);
+
+      // Espera mais 1 segundo, remove o texto "Alice" suavemente
+      setTimeout(() => {
+        document.getElementById('curtain').classList.add('hide-text');
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
